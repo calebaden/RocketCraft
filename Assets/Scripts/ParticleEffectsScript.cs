@@ -7,8 +7,8 @@ public class ParticleEffectsScript : MonoBehaviour
 
     ParticleSystem partSys;
 
-    public float minRate;
-    public float minLifetime;
+    public float maxLifetime;
+    public float maxRate;
 
 	// Use this for initialization
 	void Start ()
@@ -20,7 +20,7 @@ public class ParticleEffectsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        partSys.startLifetime = Mathf.Lerp(partSys.startLifetime, playerController.acceleration, 1);
-        partSys.emissionRate = Mathf.Lerp(partSys.emissionRate, playerController.acceleration * 1500, 1);
+        partSys.startLifetime = Mathf.Lerp(partSys.startLifetime, playerController.acceleration * maxLifetime, 1);
+        partSys.emissionRate = Mathf.Lerp(partSys.emissionRate, playerController.acceleration * maxRate, 1);
     }
 }

@@ -3,24 +3,21 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject target;
-    public float damping = 1;
-    Vector3 offset;
+    public Transform target;
+    public float yOffset;
+    public float zOffset;
+    public float damping;
 
-    void Start()
+    private Vector3 positionVelocity;
+
+    void FixedUpdate ()
     {
-        offset = target.transform.position - transform.position;
-    }
+        Vector3 newPosition = target.position + (target.forward * zOffset);
+        newPosition.y = newPosition.y + yOffset;
 
-    void LateUpdate()
-    {
-        float currentAngle = transform.eulerAngles.y;
-        float desiredAngle = target.transform.eulerAngles.y;
-        float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * damping);
+        transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref positionVelocity, damping);
 
-        Quaternion rotation = Quaternion.Euler(0, angle, 0);
-        transform.position = target.transform.position - (rotation * offset);
-
-        transform.LookAt(target.transform);
+        Vector3 focalPoint = target.position + (target.forward * 5);
+        transform.LookAt(focalPoint);
     }
 }

@@ -1,23 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ItemPickup : MonoBehaviour
-{
+public class PickupScript : MonoBehaviour {
+
     public float fuelAmount;
 
 	// Use this for initialization
-	void Start ()
-    {
-	    
+	void Start () {
+	
 	}
 	
 	// Update is called once per frame
-	void Update ()
-    {
-	    
+	void Update () {
+	
 	}
 
-    void OnTriggerEnter (Collider otherObject)
+    void OnTriggerEnter(Collider otherObject)
     {
         if (otherObject.CompareTag("Player"))
         {
