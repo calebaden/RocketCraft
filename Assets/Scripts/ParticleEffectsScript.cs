@@ -3,24 +3,26 @@ using System.Collections;
 
 public class ParticleEffectsScript : MonoBehaviour
 {
-    PlayerController playerController;
+    PlayerInputsScript playerInputs;
 
     ParticleSystem partSys;
 
     public float maxLifetime;
+    public float minLifetime;
     public float maxRate;
+    public float minRate;
 
 	// Use this for initialization
 	void Start ()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerInputs = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerInputsScript>();
         partSys = GetComponent<ParticleSystem>();
 	}
 
     // Update is called once per frame
     void Update()
     {
-        partSys.startLifetime = Mathf.Lerp(partSys.startLifetime, playerController.acceleration * maxLifetime, 1);
-        partSys.emissionRate = Mathf.Lerp(partSys.emissionRate, playerController.acceleration * maxRate, 1);
+        partSys.startLifetime = Mathf.Lerp(partSys.startLifetime, (playerInputs.acceleration * maxLifetime) + minLifetime, 1);
+        partSys.emissionRate = Mathf.Lerp(partSys.emissionRate, (playerInputs.acceleration * maxRate) + minRate, 1);
     }
 }

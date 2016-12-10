@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PickupScript : MonoBehaviour {
-
+public class PickupScript : MonoBehaviour
+{
     public float fuelAmount;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	
 	}
 
@@ -20,7 +22,7 @@ public class PickupScript : MonoBehaviour {
         if (otherObject.CompareTag("Player"))
         {
             otherObject.GetComponent<PlayerController>().RefillFuel(fuelAmount);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

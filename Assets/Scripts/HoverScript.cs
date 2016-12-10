@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HoverScript : MonoBehaviour {
-
-    PlayerController playerController;
-
+public class HoverScript : MonoBehaviour
+{
     Rigidbody rigBody;
 
     int layerMask;
@@ -15,8 +13,6 @@ public class HoverScript : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        playerController = GetComponent<PlayerController>();
-
         rigBody = GetComponent<Rigidbody>();
 	}
 	
