@@ -22,7 +22,8 @@ public class ParticleEffectsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        partSys.startLifetime = Mathf.Lerp(partSys.startLifetime, (playerInputs.acceleration * maxLifetime) + minLifetime, 1);
-        partSys.emissionRate = Mathf.Lerp(partSys.emissionRate, (playerInputs.acceleration * maxRate) + minRate, 1);
+        // Lerp the particle variables between themselves and the player acceleration input multiplies by a co efficient
+        partSys.startLifetime = Mathf.Lerp(partSys.startLifetime, minLifetime + (playerInputs.acceleration * maxLifetime), 1);
+        partSys.emissionRate = Mathf.Lerp(partSys.emissionRate, minRate + (playerInputs.acceleration * maxRate), 1);
     }
 }

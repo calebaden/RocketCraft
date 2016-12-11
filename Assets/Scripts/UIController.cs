@@ -65,12 +65,12 @@ public class UIController : MonoBehaviour
         }
 
         // Increment or decrement current selection relative to player input
-        if (playerInputs.vertical > 0 && selTimer <= 0)
+        if (playerInputs.vertical > 0.5f && selTimer <= 0)
         {
             selTimer = selReset;
             currentSelection--;
         }
-        else if (playerInputs.vertical < 0 && selTimer <= 0)
+        else if (playerInputs.vertical < -0.5f && selTimer <= 0)
         {
             currentSelection++;
             selTimer = selReset;
@@ -118,14 +118,13 @@ public class UIController : MonoBehaviour
         {
             countDown.text = gameController.countDown.ToString();
         }
-        else
+        else if (!gameController.isStalled)
         {
             goTimer -= Time.deltaTime;
             countDown.text = "GO!";
             if (goTimer <= 0)
             {
                 countDown.text = "";
-                // Make this stop getting called
             }
 
             currentTime.text = "Time" + "\n" + gameController.currentTime.ToString("F2");
@@ -153,7 +152,15 @@ public class UIController : MonoBehaviour
             splitTimeText.color = Color.red;
         }
         checkpointTimeText.text = checkpointTime.ToString("F2");
-        splitTimeText.text = splitTime.ToString("F2");
+        if (splitTime > 0)
+        {
+            splitTimeText.text = "+" + splitTime.ToString("F2");
+        }
+        else
+        {
+            splitTimeText.text = splitTime.ToString("F2");
+        }
+
         yield return new WaitForSeconds(2);
         checkpointTimeText.enabled = false;
         splitTimeText.enabled = false;

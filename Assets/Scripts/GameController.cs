@@ -5,6 +5,7 @@ using System.Collections;
 public class GameController : MonoBehaviour
 {
     UIController uiController;
+    AudioController audioController;
 
     public float currentTime;
     public int currentMedal;
@@ -20,6 +21,7 @@ public class GameController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         uiController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
+        audioController = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioController>();
         isStalled = true;
     }
 	
@@ -50,6 +52,7 @@ public class GameController : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
+                AudioSource.PlayClipAtPoint(audioController.countdown, Camera.main.transform.position);
                 countDown--;
                 timer = 1;
             }
@@ -57,16 +60,20 @@ public class GameController : MonoBehaviour
             if (countDown <= 0)
             {
                 isCounting = false;
+                isStalled = false;
             }
         }
         else
         {
-            if (isStalled)
+            if (!isStalled)
             {
-                isStalled = false;
+                currentTime += Time.deltaTime;
             }
 
-            currentTime += Time.deltaTime;
+            if (Input.GetButtonDown("Select"))
+            {
+                isCounting = true;
+            }
         }
     }
 
@@ -74,5 +81,6 @@ public class GameController : MonoBehaviour
     void OnLevelWasLoaded ()
     {
         uiController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
+        audioController = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioController>();
     }
 }

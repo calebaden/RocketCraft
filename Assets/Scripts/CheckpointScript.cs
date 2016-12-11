@@ -34,6 +34,10 @@ public class CheckpointScript : MonoBehaviour
         {
             if (gameController.previousCheckpoint == thisCheckpoint - 1)
             {
+                AudioController audio = otherObject.GetComponent<AudioController>();
+
+                AudioSource.PlayClipAtPoint(audio.checkpoint, Camera.main.transform.position);
+
                 gameController.previousCheckpoint = thisCheckpoint;
 
                 checkpointTime = gameController.currentTime;
