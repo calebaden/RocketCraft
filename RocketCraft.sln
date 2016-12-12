@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{F867ABC4-C3E6-E27C-271B-66B8747A567F}") = "RocketCraft", "Assembly-CSharp.csproj", "{D9A46150-EDED-7F7E-ADEB-236E70C0ECB5}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RocketCraft.CSharp", "RocketCraft.CSharp.csproj", "{7C7DF1FE-5B30-DD66-E12D-DFFBE55DB739}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D9A46150-EDED-7F7E-ADEB-236E70C0ECB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9A46150-EDED-7F7E-ADEB-236E70C0ECB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9A46150-EDED-7F7E-ADEB-236E70C0ECB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9A46150-EDED-7F7E-ADEB-236E70C0ECB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C7DF1FE-5B30-DD66-E12D-DFFBE55DB739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C7DF1FE-5B30-DD66-E12D-DFFBE55DB739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C7DF1FE-5B30-DD66-E12D-DFFBE55DB739}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C7DF1FE-5B30-DD66-E12D-DFFBE55DB739}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

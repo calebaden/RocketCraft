@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     GameController gameController;
     PlayerInputsScript playerInputs;
+    HoverScript hoverScript;
 
     Rigidbody rigBody;
 
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     bool isGrounded;
     float maxAcceleration;
+    Vector3 com;
 
     [Header("Stuff Here")]
     public float groundAcceleration;
@@ -32,9 +34,13 @@ public class PlayerController : MonoBehaviour
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         playerInputs = gameController.gameObject.GetComponent<PlayerInputsScript>();
+        hoverScript = GetComponent<HoverScript>();
 
         rigBody = GetComponent<Rigidbody>();
         rigBody.maxAngularVelocity = 5;
+
+        com = rigBody.centerOfMass - new Vector3(0, 0, rigBody.centerOfMass.z);
+        rigBody.centerOfMass = com;
 
         turnForce *= rigBody.mass;
         yawForce *= rigBody.mass;

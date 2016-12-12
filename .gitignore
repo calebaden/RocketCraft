@@ -1,0 +1,19 @@
+### Unity ###
+/[Tt]emp/
+/[Oo]bj/
+/[Uu]nityGenerated/
+/[Ll]ibrary/
+/[Aa]ssets/AssetStoreTools*
+
+### VS ###
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+*.tmp
