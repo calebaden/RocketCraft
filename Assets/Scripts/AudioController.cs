@@ -10,6 +10,8 @@ public class AudioController : MonoBehaviour
     public AudioClip checkpoint;
     public AudioClip countdown;
     public AudioClip go;
+    public AudioClip pickup;
+    public AudioClip[] collisions;
 
     float minGasVol = 0.1f;
     float gasVolCoEff = 0.3f;

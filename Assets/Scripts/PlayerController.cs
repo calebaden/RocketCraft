@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     GameController gameController;
     PlayerInputsScript playerInputs;
     HoverScript hoverScript;
+    AudioController audioController;
 
     Rigidbody rigBody;
 
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
     float maxFuel = 100;
     float fuelDrain = 20;
     float fuelGain = 0.05f;
+    float audioTimer;
+    float collisionCooldown = 0.2f;
 
     // Used for initialization
     void Start ()
@@ -35,6 +38,7 @@ public class PlayerController : MonoBehaviour
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         playerInputs = gameController.gameObject.GetComponent<PlayerInputsScript>();
         hoverScript = GetComponent<HoverScript>();
+        audioController = GetComponent<AudioController>();
 
         rigBody = GetComponent<Rigidbody>();
         rigBody.maxAngularVelocity = 5;
@@ -59,8 +63,16 @@ public class PlayerController : MonoBehaviour
         }
         else if (isGrounded)
         {
-            RefillFuel(fuelGain);
+            fuel += fuelGain;
         }
+
+        // Controls the collision audio timer
+        if (audioTimer > 0)
+        {
+            audioTimer -= Time.deltaTime;
+        }
+
+        Debug.Log(audioTimer);
     }
 
     // Fixed update is called once every fixed amount of time
@@ -175,6 +187,7 @@ public class PlayerController : MonoBehaviour
     public void RefillFuel(float amount)
     {
         fuel += amount;
+        AudioSource.PlayClipAtPoint(audioController.pickup, Camera.main.transform.position);
 
         if (fuel > maxFuel)
         {
@@ -192,6 +205,12 @@ public class PlayerController : MonoBehaviour
             Quaternion playerRot = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, 0);
             GameObject spark = (GameObject)Instantiate(sparkPrefab, contact.point, playerRot);
             Destroy(spark, lifeTime);
+        }
+
+        if (audioTimer <= 0)
+        {
+            AudioSource.PlayClipAtPoint(audioController.collisions[Random.Range(0, 1)], Camera.main.transform.position, rigBody.velocity.magnitude);
+            audioTimer = collisionCooldown;
         }
     }
 }
